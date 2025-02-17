@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidix Pametni Staklenik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: white;
+            background-image: url("ESOSsk.jpg.jpg"); /* Ensure the path is correct */
+            background-size: cover;
+            background-position: center;
+            margin: 0; /* Remove default margin */
+            height: 100vh; /* Full screen height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            max-width: 80%; /* Ensure container doesn't stretch too wide */
+            text-align: left; /* Align text properly */
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; /* Space between buttons and content */
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out, background-color 0.3s;
+            width: 200px; /* Consistent button width */
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        #content {
+            margin-top: 20px;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            white-space: pre-line;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vidix Pametni Staklenik</h1>
+        <!-- Set the default image to image.jpg.jfif -->
+        <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> <!-- Default image to show initially -->
+        <div class="button-container">
+            <!-- First button with default image as the source -->
+            <button class="button" onclick="changeContentAndImage('Sklop funkcionira tako da imamo 3 releja, 3 senzora, ventilator, LED svjetlo i pumpu za vodu.','skola3.jpg.jfif')">Pametni Staklenik</button>
+            <button class="button" onclick="changeContentAndImage('Ovaj sustav koristi senzore za praćenje uvjeta u stakleniku.','skola2.jpg.jfif')">Kako radi</button>
+            <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljaka.','skola1.jpg.png')">Funkcija</button>
+            <button class="button" onclick="changeContentAndImage('Povećava prinos i smanjuje potrebu za ručnim radom.','Media.jpg.jfif')">Korist</button>
+            <button class="button" onclick="changeContentAndImage('Održavanje optimalnih uvjeta za rast biljaka.','Media1.jpg.jfif')">Cemu sluzi</button>
+        </div>
+        <div id="content">Kliknite na gumb da promijenite ovaj tekst.</div>
+    </div>
+
+    <script>
+        function changeContentAndImage(contentText, imagePath) {
+            document.getElementById('content').innerText = contentText; // Change the content text
+            document.getElementById('displayImage').src = imagePath; // Change the image based on the button clicked
+        }
+    </script>
+</body>
+</html>
