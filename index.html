@@ -10,11 +10,11 @@
             text-align: center;
             padding: 50px;
             color: white;
-            background-image: url("ESOSsk.jpg.jpg"); /* Ensure the path is correct */
+            background-image: url("ESOSsk.jpg.jpg"); 
             background-size: cover;
             background-position: center;
-            margin: 0; /* Remove default margin */
-            height: 100vh; /* Full screen height */
+            margin: 0; 
+            height: 100vh; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,8 +25,8 @@
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             display: inline-block;
-            max-width: 80%; /* Ensure container doesn't stretch too wide */
-            text-align: left; /* Align text properly */
+            max-width: 80%; 
+            text-align: left; 
         }
         h1 {
             font-size: 2.5em;
@@ -37,7 +37,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px; /* Space between buttons and content */
+            margin-top: 20px; 
         }
         .button {
             padding: 15px 30px;
@@ -49,13 +49,13 @@
             color: white;
             border-radius: 10px;
             transition: transform 0.2s ease-in-out, background-color 0.3s;
-            width: 200px; /* Consistent button width */
+            width: 200px;
         }
         .button:hover {
             background-color: #0056b3;
             transform: scale(1.1);
         }
-        /* Container for image/video and text */
+        
         .media-container {
             display: flex;
             align-items: center;
@@ -66,7 +66,7 @@
             margin-top: 20px;
             font-size: 1.2em;
             max-width: 600px;
-            margin-left: 20px; /* Space between media and content */
+            margin-left: 20px; 
             text-align: left;
             white-space: pre-line;
         }
@@ -83,46 +83,46 @@
         <h1>Vidix Pametni Staklenik</h1>  
         <p style="font-size: 1.0em; font-weight: bold;">Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković Profesori: Želimir Begović i Ana Presčki</p>
 
-        <!-- Wrap the image/video and content in a container for flexbox layout -->
+        
         <div class="media-container">
-            <!-- Set the default image to image.jpg.jfif -->
-            <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> <!-- Default image to show initially -->
-            <!-- Video element, initially hidden -->
+           
+            <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> 
+            
             <video id="displayVideo" class="video" controls style="display:none;">
                 <source id="videoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <!-- Content Text -->
+            
             <div id="content">Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.</div>
         </div>
 
         <div class="button-container">
-            <!-- First button with default image as the source -->
+            
             <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo osigurava optimalne uvjete u stakleniku pomoću senzora temperature,razine svjetla i vlaznosti tla.','skola2.jpg.jfif')">Pametni Staklenik</button>
             <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo na osnovu podataka dobivenih od senzora upravlja s relejima za uključenje ventilatora,led svjetiljke i pumpe za vodu.','skola3.jpg.jfif')">Vidix</button>
             <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljaka.','Media.jpg.jfif.')">Kako radi</button>
             <button class="button" onclick="changeContentAndImage('.','vidix.mp4.mp4')">Video demonstracija</button>
         </div>
-    </div>
+    </div>xx
 
     <script>
         function changeContentAndImage(contentText, mediaPath) {
-            // Update content text
+           
             document.getElementById('content').innerText = contentText; 
 
-            // Check if the media is a video (based on file extension)
+            
             if (mediaPath.endsWith('.mp4')) {
-                // Hide the image and show the video
+             
                 document.getElementById('displayImage').style.display = 'none';
                 document.getElementById('displayVideo').style.display = 'block';
-                document.getElementById('videoSource').src = mediaPath; // Set the video source
-                document.getElementById('displayVideo').load(); // Load the new video
-                document.getElementById('displayVideo').play(); // Start playing the video
+                document.getElementById('videoSource').src = mediaPath; 
+                document.getElementById('displayVideo').load(); 
+                document.getElementById('displayVideo').play(); 
             } else {
-                // Hide the video and show the image
+                
                 document.getElementById('displayVideo').style.display = 'none';
                 document.getElementById('displayImage').style.display = 'block';
-                document.getElementById('displayImage').src = mediaPath; // Set the image source
+                document.getElementById('displayImage').src = mediaPath; 
             }
         }
     </script>
