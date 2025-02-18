@@ -55,17 +55,23 @@
             background-color: #0056b3;
             transform: scale(1.1);
         }
+        /* Container for image/video and text */
+        .media-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
         #content {
             margin-top: 20px;
             font-size: 1.2em;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 20px; /* Space between media and content */
             text-align: left;
             white-space: pre-line;
         }
-        .image {
-            max-width: 100%;
+        .image, .video {
+            max-width: 50%;
             height: auto;
             border-radius: 10px;
             margin-top: 20px;
@@ -74,23 +80,50 @@
 </head>
 <body>
     <div class="container">
-        <h1>Vidix Pametni Staklenik</h1>
-        <!-- Set the default image to image.jpg.jfif -->
-        <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> <!-- Default image to show initially -->
+        <h1>Vidix Pametni Staklenik</h1>  
+        <p style="font-size: 1.0em; font-weight: bold;">Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković Profesori: Želimir Begović i Ana Presčki</p>
+
+        <!-- Wrap the image/video and content in a container for flexbox layout -->
+        <div class="media-container">
+            <!-- Set the default image to image.jpg.jfif -->
+            <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> <!-- Default image to show initially -->
+            <!-- Video element, initially hidden -->
+            <video id="displayVideo" class="video" controls style="display:none;">
+                <source id="videoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Content Text -->
+            <div id="content">Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.</div>
+        </div>
+
         <div class="button-container">
             <!-- First button with default image as the source -->
             <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo osigurava optimalne uvjete u stakleniku pomoću senzora temperature,razine svjetla i vlaznosti tla.','skola2.jpg.jfif')">Pametni Staklenik</button>
-            <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo na osnovu podataka dobiveni od senzora upravlja s relejima za uključenje ventilatora,led svjetiljke i pumpe za vodu.','skola3.jpg.jfif')">Vidix</button>
+            <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo na osnovu podataka dobivenih od senzora upravlja s relejima za uključenje ventilatora,led svjetiljke i pumpe za vodu.','skola3.jpg.jfif')">Vidix</button>
             <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljaka.','Media.jpg.jfif.')">Kako radi</button>
-            <button class="button" onclick="changeContentAndImage('Povećava prinos i smanjuje potrebu za ručnim radom.','vidix.mp4.mp4')">djelovi</button>
+            <button class="button" onclick="changeContentAndImage('.','vidix.mp4.mp4')">Video demonstracije</button>
         </div>
-        <div id="content">Kliknite na gumb da promijenite ovaj tekst.</div>
     </div>
 
     <script>
-        function changeContentAndImage(contentText, imagePath) {
-            document.getElementById('content').innerText = contentText; // Change the content text
-            document.getElementById('displayImage').src = imagePath; // Change the image based on the button clicked
+        function changeContentAndImage(contentText, mediaPath) {
+            // Update content text
+            document.getElementById('content').innerText = contentText; 
+
+            // Check if the media is a video (based on file extension)
+            if (mediaPath.endsWith('.mp4')) {
+                // Hide the image and show the video
+                document.getElementById('displayImage').style.display = 'none';
+                document.getElementById('displayVideo').style.display = 'block';
+                document.getElementById('videoSource').src = mediaPath; // Set the video source
+                document.getElementById('displayVideo').load(); // Load the new video
+                document.getElementById('displayVideo').play(); // Start playing the video
+            } else {
+                // Hide the video and show the image
+                document.getElementById('displayVideo').style.display = 'none';
+                document.getElementById('displayImage').style.display = 'block';
+                document.getElementById('displayImage').src = mediaPath; // Set the image source
+            }
         }
     </script>
 </body>
