@@ -76,55 +76,74 @@
             border-radius: 10px;
             margin-top: 20px;
         }
+        #initial-message {
+            text-align: center;
+            margin-bottom: 20px;
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Vidix Pametni Staklenik</h1>  
-        <p style="font-size: 1.0em; font-weight: bold;">Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković Profesori: Želimir Begović i Ana Presčki</p>
+        <!-- Hidden by default, shown only on Početna stranica -->
+        <div id="initial-message">
+            <h1>Vidix Pametni Staklenik</h1>
+            <p style="font-size: 1.0em; font-weight: bold;">
+                Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković <br> 
+                Profesori: Želimir Begović i Ana Presčki
+            </p>
+        </div>
 
-        
         <div class="media-container">
-           
             <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> 
-            
             <video id="displayVideo" class="video" controls style="display:none;">
                 <source id="videoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            
             <div id="content">Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.</div>
         </div>
 
         <div class="button-container">
-            
+            <button class="button" onclick="resetToHome()">Početna stranica</button>
             <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo osigurava optimalne uvjete u stakleniku pomoću senzora temperature,razine svjetla i vlaznosti tla.','skola2.jpg.jfif')">Pametni Staklenik</button>
             <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo na osnovu podataka dobivenih od senzora upravlja s relejima za uključenje ventilatora,led svjetiljke i pumpe za vodu.','skola3.jpg.jfif')">Vidix</button>
             <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljke.','Pametnistaklenik.png')">Kako radi</button>
             <button class="button" onclick="changeContentAndImage('.','vidix.mp4.mp4')">Video demonstracija</button>
         </div>
-    </div>xx
+    </div>
 
     <script>
-        function changeContentAndImage(contentText, mediaPath) {
-           
-            document.getElementById('content').innerText = contentText; 
+        function resetToHome() {
+            // Show the initial message
+            document.getElementById('initial-message').style.display = 'block';
+            // Reset the content and media
+            document.getElementById('content').innerText = 'Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.';
+            document.getElementById('displayImage').style.display = 'block';
+            document.getElementById('displayVideo').style.display = 'none';
+            document.getElementById('displayImage').src = 'skola4.jpg.png';
+        }
 
-            
+        function changeContentAndImage(contentText, mediaPath) {
+            // Hide the initial message when another button is clicked
+            document.getElementById('initial-message').style.display = 'none';
+
+            document.getElementById('content').innerText = contentText;
+
             if (mediaPath.endsWith('.mp4')) {
-             
                 document.getElementById('displayImage').style.display = 'none';
                 document.getElementById('displayVideo').style.display = 'block';
-                document.getElementById('videoSource').src = mediaPath; 
-                document.getElementById('displayVideo').load(); 
-                document.getElementById('displayVideo').play(); 
+                document.getElementById('videoSource').src = mediaPath;
+                document.getElementById('displayVideo').load();
+                document.getElementById('displayVideo').play();
             } else {
-                
                 document.getElementById('displayVideo').style.display = 'none';
                 document.getElementById('displayImage').style.display = 'block';
-                document.getElementById('displayImage').src = mediaPath; 
+                document.getElementById('displayImage').src = mediaPath;
             }
         }
+
+        // Run resetToHome() once when the page loads to ensure the initial message is shown
+        window.onload = resetToHome;
     </script>
 </body>
 </html>
