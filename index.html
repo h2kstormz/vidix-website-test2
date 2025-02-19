@@ -25,19 +25,26 @@
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             display: inline-block;
-            max-width: 80%; 
-            text-align: left; 
+            max-width: 80%;
+            text-align: left;
+        }
+        #homeContent {
+            display: block;
         }
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 2.8em; /* Slightly bigger than other text */
+            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .student-info {
+            font-size: 1.2em;
+            font-weight: bold;
         }
         .button-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px; 
+            margin-top: 20px;
         }
         .button {
             padding: 15px 30px;
@@ -65,7 +72,7 @@
             margin-top: 20px;
             font-size: 1.2em;
             max-width: 600px;
-            margin-left: 20px; 
+            margin-left: 20px;
             text-align: left;
             white-space: pre-line;
         }
@@ -79,8 +86,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Vidix Pametni Staklenik</h1>
-        <p style="font-size: 1.0em; font-weight: bold;">Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković Profesori: Želimir Begović i Ana Presčki</p>
+        <div id="homeContent">
+            <h1>Vidix Pametni Staklenik</h1>
+            <p class="student-info">
+                Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković <br>
+                Profesori: Želimir Begović i Ana Presčki
+            </p>
+        </div>
 
         <div class="media-container">
             <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> 
@@ -88,51 +100,56 @@
                 <source id="videoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div id="content">Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.</div>
+            <div id="content">Esoš elektroničari VIDIX projekt pametni staklenik ICSE Science Factory.</div>
         </div>
 
         <div class="button-container">
             <button class="button" onclick="resetToHome()">Početna stranica</button>
-            <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo osigurava optimalne uvjete u stakleniku pomoću senzora temperature,razine svjetla i vlaznosti tla.','skola2.jpg.jfif')">Pametni Staklenik</button>
-            <button class="button" onclick="changeContentAndImage('Vidix mikroracunalo na osnovu podataka dobivenih od senzora upravlja s relejima za uključenje ventilatora,led svjetiljke i pumpe za vodu.','skola3.jpg.jfif')">Vidix</button>
-            <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljke.','Pametnistaklenik.png')">Kako radi</button>
-            <button class="button" onclick="changeContentAndImage('','vidix.mp4.mp4')">Video demonstracija</button>
+            <button class="button" onclick="changeContentAndImage('Vidix mikroračunalo osigurava optimalne uvjete u stakleniku pomoću senzora temperature, razine svjetla i vlažnosti tla.', 'skola2.jpg.jfif')">Pametni Staklenik</button>
+            <button class="button" onclick="changeContentAndImage('Vidix mikroračunalo na osnovu podataka dobivenih od senzora upravlja s relejima za uključenje ventilatora, led svjetiljke i pumpe za vodu.', 'skola3.jpg.jfif')">Vidix</button>
+            <button class="button" onclick="changeContentAndImage('Automatsko upravljanje uvjetima za rast biljke.', 'Pametnistaklenik.png')">Kako radi</button>
+            <button class="button" onclick="changeContentAndImage('', 'vidix.mp4.mp4')">Video demonstracija</button>
         </div>
     </div>
 
     <script>
         function changeContentAndImage(contentText, mediaPath) {
-            document.getElementById('content').innerText = contentText; 
+            document.getElementById('content').innerText = contentText;
 
             let videoElement = document.getElementById('displayVideo');
             let imageElement = document.getElementById('displayImage');
+            let homeContent = document.getElementById('homeContent');
+
+            homeContent.style.display = 'none'; // Hide title and student info
 
             if (mediaPath.endsWith('.mp4')) {
                 imageElement.style.display = 'none';
                 videoElement.style.display = 'block';
-                document.getElementById('videoSource').src = mediaPath; 
-                videoElement.load(); 
-                videoElement.play(); 
+                document.getElementById('videoSource').src = mediaPath;
+                videoElement.load();
+                videoElement.play();
             } else {
-                // Pause the video before hiding it
                 videoElement.pause();
-                videoElement.currentTime = 0; // Reset the video to the start
-
+                videoElement.currentTime = 0;
                 videoElement.style.display = 'none';
                 imageElement.style.display = 'block';
-                imageElement.src = mediaPath; 
+                imageElement.src = mediaPath;
             }
         }
 
         function resetToHome() {
             let videoElement = document.getElementById('displayVideo');
-            videoElement.pause();
-            videoElement.currentTime = 0; // Reset video
+            let homeContent = document.getElementById('homeContent');
 
-            document.getElementById('content').innerText = 'Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.';
+            videoElement.pause();
+            videoElement.currentTime = 0;
+
+            homeContent.style.display = 'block'; // Show title and student info
+
+            document.getElementById('content').innerText = 'Esoš elektroničari VIDIX projekt pametni staklenik ICSE Science Factory.';
             document.getElementById('displayImage').style.display = 'block';
             document.getElementById('displayVideo').style.display = 'none';
-            document.getElementById('displayImage').src = 'skola4.jpg.png'; 
+            document.getElementById('displayImage').src = 'skola4.jpg.png';
         }
     </script>
 </body>
