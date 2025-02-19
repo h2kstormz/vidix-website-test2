@@ -55,7 +55,6 @@
             background-color: #0056b3;
             transform: scale(1.1);
         }
-        
         .media-container {
             display: flex;
             align-items: center;
@@ -76,23 +75,12 @@
             border-radius: 10px;
             margin-top: 20px;
         }
-        #initial-message {
-            text-align: center;
-            margin-bottom: 20px;
-            display: none; /* Initially hidden */
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Hidden by default, shown only on Početna stranica -->
-        <div id="initial-message">
-            <h1>Vidix Pametni Staklenik</h1>
-            <p style="font-size: 1.0em; font-weight: bold;">
-                Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković <br> 
-                Profesori: Želimir Begović i Ana Presčki
-            </p>
-        </div>
+        <h1>Vidix Pametni Staklenik</h1>
+        <p style="font-size: 1.0em; font-weight: bold;">Učenici: Matija Berić, Antonio Padmosoekarto i Petar Skopljaković Profesori: Želimir Begović i Ana Presčki</p>
 
         <div class="media-container">
             <img id="displayImage" src="skola4.jpg.png" alt="Media" class="image"> 
@@ -113,37 +101,39 @@
     </div>
 
     <script>
-        function resetToHome() {
-            // Show the initial message
-            document.getElementById('initial-message').style.display = 'block';
-            // Reset the content and media
-            document.getElementById('content').innerText = 'Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.';
-            document.getElementById('displayImage').style.display = 'block';
-            document.getElementById('displayVideo').style.display = 'none';
-            document.getElementById('displayImage').src = 'skola4.jpg.png';
-        }
-
         function changeContentAndImage(contentText, mediaPath) {
-            // Hide the initial message when another button is clicked
-            document.getElementById('initial-message').style.display = 'none';
+            document.getElementById('content').innerText = contentText; 
 
-            document.getElementById('content').innerText = contentText;
+            let videoElement = document.getElementById('displayVideo');
+            let imageElement = document.getElementById('displayImage');
 
             if (mediaPath.endsWith('.mp4')) {
-                document.getElementById('displayImage').style.display = 'none';
-                document.getElementById('displayVideo').style.display = 'block';
-                document.getElementById('videoSource').src = mediaPath;
-                document.getElementById('displayVideo').load();
-                document.getElementById('displayVideo').play();
+                imageElement.style.display = 'none';
+                videoElement.style.display = 'block';
+                document.getElementById('videoSource').src = mediaPath; 
+                videoElement.load(); 
+                videoElement.play(); 
             } else {
-                document.getElementById('displayVideo').style.display = 'none';
-                document.getElementById('displayImage').style.display = 'block';
-                document.getElementById('displayImage').src = mediaPath;
+                // Pause the video before hiding it
+                videoElement.pause();
+                videoElement.currentTime = 0; // Reset the video to the start
+
+                videoElement.style.display = 'none';
+                imageElement.style.display = 'block';
+                imageElement.src = mediaPath; 
             }
         }
 
-        // Run resetToHome() once when the page loads to ensure the initial message is shown
-        window.onload = resetToHome;
+        function resetToHome() {
+            let videoElement = document.getElementById('displayVideo');
+            videoElement.pause();
+            videoElement.currentTime = 0; // Reset video
+
+            document.getElementById('content').innerText = 'Esoš elektronicari VIDIX projekt pametni staklenik ICSE Science Factory.';
+            document.getElementById('displayImage').style.display = 'block';
+            document.getElementById('displayVideo').style.display = 'none';
+            document.getElementById('displayImage').src = 'skola4.jpg.png'; 
+        }
     </script>
 </body>
 </html>
